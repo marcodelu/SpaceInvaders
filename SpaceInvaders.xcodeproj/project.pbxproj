@@ -7,15 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A9AA8F051CE63E7B007A454E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AA8F041CE63E7B007A454E /* AppDelegate.swift */; };
-		A9AA8F071CE63E7B007A454E /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = A9AA8F061CE63E7B007A454E /* GameScene.sks */; };
-		A9AA8F091CE63E7B007A454E /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AA8F081CE63E7B007A454E /* GameScene.swift */; };
-		A9AA8F0B1CE63E7B007A454E /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AA8F0A1CE63E7B007A454E /* GameViewController.swift */; };
 		A9AA8F0E1CE63E7B007A454E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9AA8F0C1CE63E7B007A454E /* Main.storyboard */; };
 		A9AA8F101CE63E7B007A454E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9AA8F0F1CE63E7B007A454E /* Assets.xcassets */; };
 		A9AA8F131CE63E7B007A454E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9AA8F111CE63E7B007A454E /* LaunchScreen.storyboard */; };
 		A9AA8F1E1CE63E7B007A454E /* SpaceInvadersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AA8F1D1CE63E7B007A454E /* SpaceInvadersTests.swift */; };
 		A9AA8F291CE63E7B007A454E /* SpaceInvadersUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AA8F281CE63E7B007A454E /* SpaceInvadersUITests.swift */; };
+		A9AA8F381CE63EA8007A454E /* shootingSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A9AA8F371CE63EA8007A454E /* shootingSound.mp3 */; };
+		A9AA8F3A1CE63EEC007A454E /* Backgroud_StartGame.sks in Resources */ = {isa = PBXBuildFile; fileRef = A9AA8F391CE63EEC007A454E /* Backgroud_StartGame.sks */; };
+		A9AA8F461CE63F2C007A454E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AA8F3D1CE63F2C007A454E /* AppDelegate.swift */; };
+		A9AA8F471CE63F2C007A454E /* Bullet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AA8F3E1CE63F2C007A454E /* Bullet.swift */; };
+		A9AA8F481CE63F2C007A454E /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AA8F3F1CE63F2C007A454E /* GameViewController.swift */; };
+		A9AA8F491CE63F2C007A454E /* Invader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AA8F401CE63F2C007A454E /* Invader.swift */; };
+		A9AA8F4A1CE63F2C007A454E /* LevelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AA8F411CE63F2C007A454E /* LevelManager.swift */; };
+		A9AA8F4B1CE63F2C007A454E /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AA8F421CE63F2C007A454E /* Player.swift */; };
+		A9AA8F4C1CE63F2C007A454E /* Scene_Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AA8F431CE63F2C007A454E /* Scene_Game.swift */; };
+		A9AA8F4D1CE63F2C007A454E /* Scene_LevelComplete.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AA8F441CE63F2C007A454E /* Scene_LevelComplete.swift */; };
+		A9AA8F4E1CE63F2C007A454E /* Scene_StartGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AA8F451CE63F2C007A454E /* Scene_StartGame.swift */; };
+		A9AA8F511CE64107007A454E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A9AA8F501CE64107007A454E /* Info.plist */; };
+		A9AA8F541CE64156007A454E /* spacefont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A9AA8F531CE64156007A454E /* spacefont.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,20 +46,28 @@
 
 /* Begin PBXFileReference section */
 		A9AA8F011CE63E7B007A454E /* SpaceInvaders.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceInvaders.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		A9AA8F041CE63E7B007A454E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A9AA8F061CE63E7B007A454E /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
-		A9AA8F081CE63E7B007A454E /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
-		A9AA8F0A1CE63E7B007A454E /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		A9AA8F0D1CE63E7B007A454E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A9AA8F0F1CE63E7B007A454E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A9AA8F121CE63E7B007A454E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		A9AA8F141CE63E7B007A454E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A9AA8F191CE63E7B007A454E /* SpaceInvadersTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpaceInvadersTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9AA8F1D1CE63E7B007A454E /* SpaceInvadersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceInvadersTests.swift; sourceTree = "<group>"; };
 		A9AA8F1F1CE63E7B007A454E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A9AA8F241CE63E7B007A454E /* SpaceInvadersUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpaceInvadersUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9AA8F281CE63E7B007A454E /* SpaceInvadersUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceInvadersUITests.swift; sourceTree = "<group>"; };
 		A9AA8F2A1CE63E7B007A454E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A9AA8F371CE63EA8007A454E /* shootingSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = shootingSound.mp3; sourceTree = "<group>"; };
+		A9AA8F391CE63EEC007A454E /* Backgroud_StartGame.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Backgroud_StartGame.sks; sourceTree = "<group>"; };
+		A9AA8F3D1CE63F2C007A454E /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A9AA8F3E1CE63F2C007A454E /* Bullet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bullet.swift; sourceTree = "<group>"; };
+		A9AA8F3F1CE63F2C007A454E /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		A9AA8F401CE63F2C007A454E /* Invader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Invader.swift; sourceTree = "<group>"; };
+		A9AA8F411CE63F2C007A454E /* LevelManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelManager.swift; sourceTree = "<group>"; };
+		A9AA8F421CE63F2C007A454E /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		A9AA8F431CE63F2C007A454E /* Scene_Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scene_Game.swift; sourceTree = "<group>"; };
+		A9AA8F441CE63F2C007A454E /* Scene_LevelComplete.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scene_LevelComplete.swift; sourceTree = "<group>"; };
+		A9AA8F451CE63F2C007A454E /* Scene_StartGame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scene_StartGame.swift; sourceTree = "<group>"; };
+		A9AA8F501CE64107007A454E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A9AA8F531CE64156007A454E /* spacefont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = spacefont.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,14 +118,22 @@
 		A9AA8F031CE63E7B007A454E /* SpaceInvaders */ = {
 			isa = PBXGroup;
 			children = (
-				A9AA8F041CE63E7B007A454E /* AppDelegate.swift */,
-				A9AA8F061CE63E7B007A454E /* GameScene.sks */,
-				A9AA8F081CE63E7B007A454E /* GameScene.swift */,
-				A9AA8F0A1CE63E7B007A454E /* GameViewController.swift */,
-				A9AA8F0C1CE63E7B007A454E /* Main.storyboard */,
 				A9AA8F0F1CE63E7B007A454E /* Assets.xcassets */,
+				A9AA8F0C1CE63E7B007A454E /* Main.storyboard */,
 				A9AA8F111CE63E7B007A454E /* LaunchScreen.storyboard */,
-				A9AA8F141CE63E7B007A454E /* Info.plist */,
+				A9AA8F501CE64107007A454E /* Info.plist */,
+				A9AA8F3D1CE63F2C007A454E /* AppDelegate.swift */,
+				A9AA8F3F1CE63F2C007A454E /* GameViewController.swift */,
+				A9AA8F411CE63F2C007A454E /* LevelManager.swift */,
+				A9AA8F421CE63F2C007A454E /* Player.swift */,
+				A9AA8F401CE63F2C007A454E /* Invader.swift */,
+				A9AA8F3E1CE63F2C007A454E /* Bullet.swift */,
+				A9AA8F431CE63F2C007A454E /* Scene_Game.swift */,
+				A9AA8F441CE63F2C007A454E /* Scene_LevelComplete.swift */,
+				A9AA8F451CE63F2C007A454E /* Scene_StartGame.swift */,
+				A9AA8F391CE63EEC007A454E /* Backgroud_StartGame.sks */,
+				A9AA8F531CE64156007A454E /* spacefont.ttf */,
+				A9AA8F371CE63EA8007A454E /* shootingSound.mp3 */,
 			);
 			path = SpaceInvaders;
 			sourceTree = "<group>";
@@ -199,6 +224,7 @@
 				TargetAttributes = {
 					A9AA8F001CE63E7B007A454E = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = C62BGE5D38;
 					};
 					A9AA8F181CE63E7B007A454E = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -235,10 +261,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A9AA8F071CE63E7B007A454E /* GameScene.sks in Resources */,
+				A9AA8F541CE64156007A454E /* spacefont.ttf in Resources */,
 				A9AA8F131CE63E7B007A454E /* LaunchScreen.storyboard in Resources */,
 				A9AA8F101CE63E7B007A454E /* Assets.xcassets in Resources */,
+				A9AA8F511CE64107007A454E /* Info.plist in Resources */,
+				A9AA8F381CE63EA8007A454E /* shootingSound.mp3 in Resources */,
 				A9AA8F0E1CE63E7B007A454E /* Main.storyboard in Resources */,
+				A9AA8F3A1CE63EEC007A454E /* Backgroud_StartGame.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,9 +292,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A9AA8F091CE63E7B007A454E /* GameScene.swift in Sources */,
-				A9AA8F0B1CE63E7B007A454E /* GameViewController.swift in Sources */,
-				A9AA8F051CE63E7B007A454E /* AppDelegate.swift in Sources */,
+				A9AA8F461CE63F2C007A454E /* AppDelegate.swift in Sources */,
+				A9AA8F491CE63F2C007A454E /* Invader.swift in Sources */,
+				A9AA8F4D1CE63F2C007A454E /* Scene_LevelComplete.swift in Sources */,
+				A9AA8F481CE63F2C007A454E /* GameViewController.swift in Sources */,
+				A9AA8F4A1CE63F2C007A454E /* LevelManager.swift in Sources */,
+				A9AA8F4E1CE63F2C007A454E /* Scene_StartGame.swift in Sources */,
+				A9AA8F4C1CE63F2C007A454E /* Scene_Game.swift in Sources */,
+				A9AA8F4B1CE63F2C007A454E /* Player.swift in Sources */,
+				A9AA8F471CE63F2C007A454E /* Bullet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,10 +442,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = SpaceInvaders/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = delugames.SpaceInvaders;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -418,10 +458,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = SpaceInvaders/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = delugames.SpaceInvaders;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
