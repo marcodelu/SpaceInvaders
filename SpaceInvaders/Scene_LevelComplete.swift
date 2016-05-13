@@ -32,8 +32,7 @@ class Scene_LevelComplete:SKScene{
             let gameOverScene = Scene_Game(size: size)
             gameOverScene.scaleMode = scaleMode
             let transitionType = SKTransition.doorsOpenHorizontalWithDuration(1.0)
-            view?.presentScene(gameOverScene,transition: transitionType)            }
-        
-        
+            view?.presentScene(gameOverScene,transition: transitionType)
+        }
     }
 }

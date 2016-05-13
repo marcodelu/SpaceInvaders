@@ -25,7 +25,22 @@ class Scene_Game: SKScene, SKPhysicsContactDelegate {
     let player: Player = Player()
     let motionManager: CMMotionManager = CMMotionManager()
     var accelerationX: CGFloat = 0.0
-    let score: Int = 0;
+    
+    var scoreLabelPoint = SKLabelNode(fontNamed: "Space Invaders")
+    var scoreLabelText = SKLabelNode(fontNamed: "Space Invaders")
+    var scoreCount = 0
+    var score: Int = 0 {
+        didSet {
+            scoreLabelPoint.text = String(score)
+            let scorestring = String(score)
+            let newScoreCount = scorestring.characters.count
+            if newScoreCount != scoreCount {
+                scoreLabelPoint.position.x += 5
+                scoreCount = newScoreCount
+            }
+        }
+    }
+    
     
     override func didMoveToView(view: SKView) {
         self.physicsWorld.gravity=CGVectorMake(0, 0)
@@ -40,6 +55,8 @@ class Scene_Game: SKScene, SKPhysicsContactDelegate {
         
         setupInvaders()
         setupPlayer()
+        
+        setupScore()
         
         invokeInvaderFire()
         
@@ -67,14 +84,14 @@ class Scene_Game: SKScene, SKPhysicsContactDelegate {
         // Player colpito da proiettile
         if ((firstBody.categoryBitMask & CollisionCategories.Player != 0) &&
             (secondBody.categoryBitMask & CollisionCategories.InvaderBullet != 0)) {
-            print("Player and Invader Bullet Contact")
+            //print("Player and Invader Bullet Contact")
             player.die()
         }
         
         // Player colpito da invader
         if ((firstBody.categoryBitMask & CollisionCategories.Invader != 0) &&
             (secondBody.categoryBitMask & CollisionCategories.Player != 0)) {
-            print("Invader and Player Collision Contact")
+            //print("Invader and Player Collision Contact")
             player.kill()
         }
         
@@ -103,6 +120,7 @@ class Scene_Game: SKScene, SKPhysicsContactDelegate {
             }
             theInvader.removeFromParent()
             secondBody.node?.removeFromParent()
+            score += 100
             
         }
     }
@@ -184,6 +202,7 @@ class Scene_Game: SKScene, SKPhysicsContactDelegate {
     
     func levelComplete(){
         LevelManager.nextLevel()
+        LevelManager.saveScore(score)
         let levelCompleteScene = Scene_LevelComplete(size: size)
         levelCompleteScene.scaleMode = scaleMode
         let transitionType = SKTransition.doorsOpenHorizontalWithDuration(1.0)
@@ -191,7 +210,6 @@ class Scene_Game: SKScene, SKPhysicsContactDelegate {
     }
     
     func newGame(){
-        
         let gameOverScene = Scene_StartGame(size: size)
         gameOverScene.scaleMode = scaleMode
         let transitionType = SKTransition.doorsOpenHorizontalWithDuration(1.0)
@@ -207,7 +225,39 @@ class Scene_Game: SKScene, SKPhysicsContactDelegate {
     }
     
     override func didSimulatePhysics() {
-        player.physicsBody?.velocity = CGVector(dx: accelerationX * 750, dy: 0)
+        player.physicsBody?.velocity = CGVector(dx: accelerationX * 700, dy: 0)
+    }
+    
+    func setupScore(){
+        score = LevelManager.restoreScore()
+        
+        scoreLabelText.text = "SCORE: "
+        scoreLabelPoint.text = String(score)
+        
+        scoreLabelText.position = CGPointMake(20, self.size.height-15)
+        scoreLabelPoint.position = CGPointMake(scoreLabelText.position.x+30, scoreLabelText.position.y)
+        
+        scoreLabelText.color = SKColor.whiteColor()
+        scoreLabelPoint.color = SKColor.whiteColor()
+        
+        scoreLabelText.fontSize = 10
+        scoreLabelPoint.fontSize = 10
+        
+        let levelLabelText = SKLabelNode(fontNamed: "Space Invaders")
+        let levelLabelValue = SKLabelNode(fontNamed: "Space Invaders")
+        levelLabelText.text = "LEVEL: "
+        levelLabelValue.text = String(LevelManager.level)
+        levelLabelText.position = CGPointMake(self.size.width-50, self.size.height-15)
+        levelLabelValue.position = CGPointMake(levelLabelText.position.x+35, levelLabelText.position.y)
+        levelLabelText.color = SKColor.whiteColor()
+        levelLabelValue.color = SKColor.whiteColor()
+        levelLabelText.fontSize = 10
+        levelLabelValue.fontSize = 10
+        
+        addChild(scoreLabelText)
+        addChild(scoreLabelPoint)
+        addChild(levelLabelText)
+        addChild(levelLabelValue)
     }
 }
 
