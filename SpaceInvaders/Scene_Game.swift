@@ -54,6 +54,8 @@ class Scene_Game: SKScene, SKPhysicsContactDelegate {
         
         var firstBody: SKPhysicsBody
         var secondBody: SKPhysicsBody
+        
+        //Ordino body
         if contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask {
             firstBody = contact.bodyA
             secondBody = contact.bodyB
@@ -62,18 +64,21 @@ class Scene_Game: SKScene, SKPhysicsContactDelegate {
             secondBody = contact.bodyA
         }
         
+        // Player colpito da proiettile
         if ((firstBody.categoryBitMask & CollisionCategories.Player != 0) &&
             (secondBody.categoryBitMask & CollisionCategories.InvaderBullet != 0)) {
             print("Player and Invader Bullet Contact")
             player.die()
         }
         
+        // Player colpito da invader
         if ((firstBody.categoryBitMask & CollisionCategories.Invader != 0) &&
             (secondBody.categoryBitMask & CollisionCategories.Player != 0)) {
             print("Invader and Player Collision Contact")
             player.kill()
         }
         
+        // Invader colpito da proiettile
         if ((firstBody.categoryBitMask & CollisionCategories.Invader != 0) &&
             (secondBody.categoryBitMask & CollisionCategories.PlayerBullet != 0)){
             if (contact.bodyA.node?.parent == nil || contact.bodyB.node?.parent == nil) {
@@ -202,11 +207,7 @@ class Scene_Game: SKScene, SKPhysicsContactDelegate {
     }
     
     override func didSimulatePhysics() {
-        player.physicsBody?.velocity = CGVector(dx: accelerationX * 700, dy: 0)
-    }
-    
-    func setupScore(){
-        
+        player.physicsBody?.velocity = CGVector(dx: accelerationX * 750, dy: 0)
     }
 }
 

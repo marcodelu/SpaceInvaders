@@ -16,7 +16,7 @@ class Invader: SKSpriteNode {
     var textureSelected: Int = 1;
     
     init() {
-        let texture = LevelManager.texture
+        let texture = LevelManager.getTexture()
         super.init(texture: texture, color: SKColor.clearColor(), size: texture.size())
         self.name="invader"
         
