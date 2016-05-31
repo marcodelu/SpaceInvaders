@@ -28,12 +28,17 @@ class Scene_Game: SKScene, SKPhysicsContactDelegate {
     let motionManager: CMMotionManager = CMMotionManager()
     var accelerationX: CGFloat = 0.0
     
-    var scoreLabelPoint = SKLabelNode(fontNamed: "Space Invaders")
-    var scoreLabelText = SKLabelNode(fontNamed: "Space Invaders")
+    let scoreLabelPoint = SKLabelNode(fontNamed: "Space Invaders")
+    let scoreLabelText = SKLabelNode(fontNamed: "Space Invaders")
+    
+    let highscoreLabelPoint = SKLabelNode(fontNamed: "Space Invaders")
+    let highscoreLabelText = SKLabelNode(fontNamed: "Space Invaders")
+
     var scoreCount = 0
     var score: Int = 0 {
         didSet {
-            scoreLabelPoint.position = CGPointMake(scoreLabelText.position.x+30, scoreLabelText.position.y)
+            // Sposto il label se necessario
+            scoreLabelPoint.position = CGPointMake(scoreLabelText.position.x+20, scoreLabelText.position.y)
             scoreLabelPoint.text = String(score)
             let scorestring = String(score)
             
@@ -42,6 +47,30 @@ class Scene_Game: SKScene, SKPhysicsContactDelegate {
                 scoreLabelPoint.position.x += 5
                 charactersCount -= 1
             }
+            
+            //Controllo se ha superato l'high score
+            if score > highscore {
+                highscore = score
+            }
+        }
+    }
+    var highscore: Int = 0 {
+        didSet {
+            //Sposta e aggiorna grafica
+            highscoreLabelPoint.position = CGPointMake(highscoreLabelText.position.x+40, highscoreLabelText.position.y)
+            highscoreLabelPoint.text = String(highscore)
+            let highscorestring = String(highscore)
+            
+            var charactersCount = highscorestring.characters.count
+            while(charactersCount > 0){
+                highscoreLabelPoint.position.x += 5
+                charactersCount -= 1
+            }
+
+            
+            //Salva il nuovo high score
+            NSUserDefaults.standardUserDefaults().setObject(highscore, forKey: "highscore")
+            print("Saved highscore:", highscore)
         }
     }
     
@@ -205,8 +234,9 @@ class Scene_Game: SKScene, SKPhysicsContactDelegate {
     }
     
     func levelComplete(){
-        LevelManager.nextLevel()
         LevelManager.saveScore(score)
+        LevelManager.nextLevel()
+        
         let levelCompleteScene = Scene_LevelComplete(size: size)
         levelCompleteScene.scaleMode = scaleMode
         let transitionType = SKTransition.moveInWithDirection(SKTransitionDirection.Down, duration: 0.5)
@@ -234,16 +264,14 @@ class Scene_Game: SKScene, SKPhysicsContactDelegate {
     
     func setupScore(){
         score = LevelManager.restoreScore()
+        highscore = LevelManager.getHighscore()
         
         scoreLabelText.text = "SCORE: "
         scoreLabelPoint.text = String(score)
-        
         scoreLabelText.position = CGPointMake(20, self.size.height-15)
         scoreLabelPoint.position = CGPointMake(scoreLabelText.position.x+30, scoreLabelText.position.y)
-        
         scoreLabelText.color = SKColor.whiteColor()
         scoreLabelPoint.color = SKColor.whiteColor()
-        
         scoreLabelText.fontSize = 10
         scoreLabelPoint.fontSize = 10
         
@@ -258,10 +286,20 @@ class Scene_Game: SKScene, SKPhysicsContactDelegate {
         levelLabelText.fontSize = 10
         levelLabelValue.fontSize = 10
         
+        highscoreLabelText.text = "HIGH SCORE: "
+        highscoreLabelText.color = SKColor.whiteColor()
+        highscoreLabelText.fontSize = scoreLabelPoint.fontSize
+        highscoreLabelPoint.color = SKColor.whiteColor()
+        highscoreLabelPoint.fontSize = scoreLabelPoint.fontSize
+        highscoreLabelText.position = CGPointMake(size.width/2, scoreLabelText.position.y)
+        highscoreLabelPoint.position = CGPointMake(highscoreLabelText.position.x+40, highscoreLabelText.position.y)
+
         addChild(scoreLabelText)
         addChild(scoreLabelPoint)
         addChild(levelLabelText)
         addChild(levelLabelValue)
+        addChild(highscoreLabelText)
+        addChild(highscoreLabelPoint)
     }
 }
 

@@ -14,6 +14,9 @@ class Scene_StartGame: SKScene {
     let Title1 = SKLabelNode(fontNamed: "Space Invaders")
     let Title2 = SKLabelNode(fontNamed: "Space Invaders")
     let Start = SKLabelNode(fontNamed: "Space Invaders")
+    let HighscoreLabel = SKLabelNode(fontNamed: "Space Invaders")
+    let HighscoreDefaultText: String = "HIGH SCORE: "
+    var HighscoreValue: Int?
     
     override func didMoveToView(view: SKView) {
         self.backgroundColor = SKColor.blackColor()
@@ -41,19 +44,27 @@ class Scene_StartGame: SKScene {
         Start.color = SKColor.whiteColor()
         Start.name = "start"
         
-        /*let StartBox = SKShapeNode(rectOfSize: CGSize(width: 100, height: 50))
-        StartBox.position = CGPointMake(Start.position.x-10, Start.position.y)*/
+        HighscoreLabel.text = HighscoreDefaultText
+        HighscoreLabel.position = CGPointMake(size.width/2, 20)
+        HighscoreLabel.fontSize = 15
+        HighscoreLabel.color = SKColor.whiteColor()
+        HighscoreLabel.name = "highscorelabel"
         
-        /*let Title = SKSpriteNode(imageNamed: "Title")
-        Title.position = CGPointMake(size.width/2-100, size.height/2)
-        let Button_start = SKSpriteNode(imageNamed: "NewGame")
-        Button_start.position = CGPointMake(size.width/2,size.height/2 - 150)
-        Button_start.name = "start"*/
+        //Restore highscore
+        HighscoreValue = NSUserDefaults.standardUserDefaults().objectForKey("highscore") as? Int
+        if HighscoreValue != nil {
+            HighscoreLabel.text = HighscoreDefaultText + String(HighscoreValue!)
+        } else {
+            HighscoreValue = 0
+            HighscoreLabel.text = HighscoreDefaultText + "0"
+        }
+        print("High score loaded: ", HighscoreValue)
+        LevelManager.setHighscore(HighscoreValue!)
         
         addChild(Title1)
         addChild(Title2)
         addChild(Start)
-        //addChild(StartBox)
+        addChild(HighscoreLabel)
         
         runAction(SKAction.repeatActionForever(changeColor()))
     }
@@ -69,6 +80,14 @@ class Scene_StartGame: SKScene {
             let transitionType = SKTransition.doorsOpenHorizontalWithDuration(1.0)
             view?.presentScene(newScene,transition: transitionType)
         }
+
+        //Resetto high score, solo per test
+        print(touches.count)
+        if touches.count>=3 {
+            HighscoreValue = 0
+            LevelManager.setHighscore(HighscoreValue!)
+            HighscoreLabel.text = HighscoreDefaultText + String(HighscoreValue!)
+        }
     }
     
     func changeColor() -> SKAction{
@@ -80,37 +99,44 @@ class Scene_StartGame: SKScene {
                 self.Title1.fontColor = SKColor.redColor()
                 self.Title2.fontColor = SKColor.redColor()
                 self.Start.fontColor = SKColor.redColor()
+                self.HighscoreLabel.fontColor = SKColor.redColor()
                 break
             case 2:
                 self.Title1.fontColor = SKColor.greenColor()
                 self.Title2.fontColor = SKColor.greenColor()
                 self.Start.fontColor = SKColor.greenColor()
+                self.HighscoreLabel.fontColor = SKColor.greenColor()
                 break
             case 3:
                 self.Title1.fontColor = SKColor.blueColor()
                 self.Title2.fontColor = SKColor.blueColor()
                 self.Start.fontColor = SKColor.blueColor()
+                self.HighscoreLabel.fontColor = SKColor.blueColor()
                 break
             case 4:
                 self.Title1.fontColor = SKColor.yellowColor()
                 self.Title2.fontColor = SKColor.yellowColor()
                 self.Start.fontColor = SKColor.yellowColor()
+                self.HighscoreLabel.fontColor = SKColor.yellowColor()
                 break
             case 5:
                 self.Title1.fontColor = SKColor.orangeColor()
                 self.Title2.fontColor = SKColor.orangeColor()
                 self.Start.fontColor = SKColor.orangeColor()
+                self.HighscoreLabel.fontColor = SKColor.orangeColor()
                 break
             case 6:
                 self.Title1.fontColor = SKColor.purpleColor()
                 self.Title2.fontColor = SKColor.purpleColor()
                 self.Start.fontColor = SKColor.purpleColor()
+                self.HighscoreLabel.fontColor = SKColor.purpleColor()
                 break
 
             default:
                 self.Title1.fontColor = SKColor.whiteColor()
                 self.Title2.fontColor = SKColor.whiteColor()
                 self.Start.fontColor = SKColor.whiteColor()
+                self.HighscoreLabel.fontColor = SKColor.whiteColor()
                 self.colortime = 0
                 break
             }

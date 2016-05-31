@@ -19,6 +19,7 @@ class LevelManager {
     static private(set) var maxLevel: Int = 10
     
     static private var score = 0;
+    static private var highscore = 0;
     
     static func newGame() {
         level = 1
@@ -27,6 +28,7 @@ class LevelManager {
         rows = 2
         invadersInRow = 5
         score = 0
+        highscore = 0
     }
     
     static func nextLevel() {
@@ -49,11 +51,23 @@ class LevelManager {
     static func saveScore(s: Int){
         score = s
         print("Saved score: \(score)")
+        
+        if score > highscore{
+            highscore = score
+        }
     }
     
     static func restoreScore() -> Int{
         print("Restored score: \(score)")
         return score
+    }
+    
+    static func setHighscore(s: Int){
+        highscore = s
+    }
+    
+    static func getHighscore() -> Int{
+        return highscore
     }
 
 }
