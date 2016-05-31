@@ -21,8 +21,10 @@ class Scene_Game: SKScene, SKPhysicsContactDelegate {
     let leftBounds = CGFloat(10)
     var rightBounds = CGFloat(0)
     var shift: CGFloat?
+    
     var invadersWhoCanFire:[Invader] = []
     let player: Player = Player()
+    
     let motionManager: CMMotionManager = CMMotionManager()
     var accelerationX: CGFloat = 0.0
     
@@ -31,12 +33,14 @@ class Scene_Game: SKScene, SKPhysicsContactDelegate {
     var scoreCount = 0
     var score: Int = 0 {
         didSet {
+            scoreLabelPoint.position = CGPointMake(scoreLabelText.position.x+30, scoreLabelText.position.y)
             scoreLabelPoint.text = String(score)
             let scorestring = String(score)
-            let newScoreCount = scorestring.characters.count
-            if newScoreCount != scoreCount {
+            
+            var charactersCount = scorestring.characters.count
+            while(charactersCount > 0){
                 scoreLabelPoint.position.x += 5
-                scoreCount = newScoreCount
+                charactersCount -= 1
             }
         }
     }
@@ -172,7 +176,7 @@ class Scene_Game: SKScene, SKPhysicsContactDelegate {
         
         if(changeDirection == true){
             LevelManager.changeDirection()
-            self.enumerateChildNodesWithName("invader") { node, stop in
+            self.enumerateChildNodesWithName("invader") { node, stop in //crea funzione da passare al metodo
                 let invader = node as! SKSpriteNode
                 invader.position.y -= self.shift!
             }
@@ -205,7 +209,7 @@ class Scene_Game: SKScene, SKPhysicsContactDelegate {
         LevelManager.saveScore(score)
         let levelCompleteScene = Scene_LevelComplete(size: size)
         levelCompleteScene.scaleMode = scaleMode
-        let transitionType = SKTransition.doorsOpenHorizontalWithDuration(1.0)
+        let transitionType = SKTransition.moveInWithDirection(SKTransitionDirection.Down, duration: 0.5)
             view?.presentScene(levelCompleteScene,transition: transitionType)
     }
     
@@ -262,15 +266,15 @@ class Scene_Game: SKScene, SKPhysicsContactDelegate {
 }
 
 //MARK: Utilities
-extension Array {
+extension Array { //Aggiungi metodo alla classe di sistema Array
     func randomElement() -> Element {
         let index = Int(arc4random_uniform(UInt32(self.count)))
         return self[index]
     }
 }
 
-func findIndex<T: Equatable>(array: [T], valueToFind: T) -> Int? {
-    for (index, value) in array.enumerate() {
+func findIndex<T: Equatable>(array: [T], valueToFind: T) -> Int? { //Classe parametrizzata
+    for (index, value) in array.enumerate() { //Tuple: coppia di valori che stanno insieme
         if value == valueToFind {
             return index
         }

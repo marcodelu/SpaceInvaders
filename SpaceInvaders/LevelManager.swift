@@ -13,8 +13,8 @@ class LevelManager {
     static private(set) var speed: Float = 1
     static private(set) var rows: Int = 1
     static private(set) var invadersInRow: Int = 1
-    static private(set) var texture: Int = 1
-    
+    static private var texture: Int = 1
+
     static private(set) var level: Int = 1
     static private(set) var maxLevel: Int = 10
     
@@ -48,11 +48,11 @@ class LevelManager {
     
     static func saveScore(s: Int){
         score = s
-        print("Saved score: ", score)
+        print("Saved score: \(score)")
     }
     
     static func restoreScore() -> Int{
-        print("Restored score: ", score)
+        print("Restored score: \(score)")
         return score
     }
 

@@ -70,6 +70,7 @@ class Player: SKSpriteNode {
     }
     
     func die (){
+        
         if(!invincible){
             lives -= 1
             //TODO: Togli i cuori

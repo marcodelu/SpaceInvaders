@@ -12,9 +12,7 @@ import SpriteKit
 class Invader: SKSpriteNode {
     var invaderRow = 0
     var invaderColumn = 0
-    var textureFile: String = "enemy"
-    var textureSelected: Int = 1;
-    
+
     init() {
         let texture = LevelManager.getTexture()
         super.init(texture: texture, color: SKColor.clearColor(), size: texture.size())

@@ -74,6 +74,7 @@ class Scene_StartGame: SKScene {
     func changeColor() -> SKAction{
         let change = SKAction.runBlock {
             self.colortime += 1
+            
             switch self.colortime {
             case 1:
                 self.Title1.fontColor = SKColor.redColor()

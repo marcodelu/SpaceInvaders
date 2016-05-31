@@ -10,6 +10,7 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    //Classe che contiene EventHandlder riguardanti l'applicazione (Apertura, chiusura, backgroud)
 
     var window: UIWindow?
 
