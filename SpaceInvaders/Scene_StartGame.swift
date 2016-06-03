@@ -82,7 +82,6 @@ class Scene_StartGame: SKScene {
         }
 
         //Resetto high score, solo per test
-        print(touches.count)
         if touches.count>=3 {
             HighscoreValue = 0
             LevelManager.setHighscore(HighscoreValue!)
@@ -102,30 +101,48 @@ class Scene_StartGame: SKScene {
                 self.HighscoreLabel.fontColor = SKColor.redColor()
                 break
             case 2:
-                self.Title1.fontColor = SKColor.greenColor()
-                self.Title2.fontColor = SKColor.greenColor()
-                self.Start.fontColor = SKColor.greenColor()
-                self.HighscoreLabel.fontColor = SKColor.greenColor()
-                break
-            case 3:
-                self.Title1.fontColor = SKColor.blueColor()
-                self.Title2.fontColor = SKColor.blueColor()
-                self.Start.fontColor = SKColor.blueColor()
-                self.HighscoreLabel.fontColor = SKColor.blueColor()
-                break
-            case 4:
-                self.Title1.fontColor = SKColor.yellowColor()
-                self.Title2.fontColor = SKColor.yellowColor()
-                self.Start.fontColor = SKColor.yellowColor()
-                self.HighscoreLabel.fontColor = SKColor.yellowColor()
-                break
-            case 5:
                 self.Title1.fontColor = SKColor.orangeColor()
                 self.Title2.fontColor = SKColor.orangeColor()
                 self.Start.fontColor = SKColor.orangeColor()
                 self.HighscoreLabel.fontColor = SKColor.orangeColor()
                 break
+                
+            case 3:
+                self.Title1.fontColor = SKColor.yellowColor()
+                self.Title2.fontColor = SKColor.yellowColor()
+                self.Start.fontColor = SKColor.yellowColor()
+                self.HighscoreLabel.fontColor = SKColor.yellowColor()
+                break
+                
+            case 4:
+                self.Title1.fontColor = SKColor.greenColor()
+                self.Title2.fontColor = SKColor.greenColor()
+                self.Start.fontColor = SKColor.greenColor()
+                self.HighscoreLabel.fontColor = SKColor.greenColor()
+                break
+                
+            case 5:
+                self.Title1.fontColor = SKColor.cyanColor()
+                self.Title2.fontColor = SKColor.cyanColor()
+                self.Start.fontColor = SKColor.cyanColor()
+                self.HighscoreLabel.fontColor = SKColor.cyanColor()
+                break
+                
             case 6:
+                self.Title1.fontColor = SKColor.blueColor()
+                self.Title2.fontColor = SKColor.blueColor()
+                self.Start.fontColor = SKColor.blueColor()
+                self.HighscoreLabel.fontColor = SKColor.blueColor()
+                break
+                
+            case 7:
+                self.Title1.fontColor = SKColor.magentaColor()
+                self.Title2.fontColor = SKColor.magentaColor()
+                self.Start.fontColor = SKColor.magentaColor()
+                self.HighscoreLabel.fontColor = SKColor.magentaColor()
+                break
+                
+            case 8:
                 self.Title1.fontColor = SKColor.purpleColor()
                 self.Title2.fontColor = SKColor.purpleColor()
                 self.Start.fontColor = SKColor.purpleColor()

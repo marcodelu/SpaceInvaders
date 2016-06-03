@@ -25,48 +25,62 @@ class LevelManager {
         level = 1
         texture = 1
         speed = 1
-        rows = 2
+        rows = 1
         invadersInRow = 5
         score = 0
-        highscore = 0
     }
     
     static func nextLevel() {
-        print("Level changed")
+        if speed<0 {
+            speed *= -1
+        }
+        
         level += 1
         texture += 1
-        speed += 0.5
+        speed += 0.3
         rows += 1
         invadersInRow = 5
+        
+        if(level>=5) {
+            speed -= 0.3
+        }
+        
+        if(level>8) {
+            texture = 8
+        }
+        
+        print("Level: ", level, " speed:", speed, " rows: ", rows)
     }
     
     static func changeDirection() {
         speed *= -1
+        //print("Changed direction: ", speed)
     }
     
-    static func getTexture() -> SKTexture{
-        return SKTexture(imageNamed: "invader" + String(texture))
+    static func getTexture() -> String{
+        return String(texture)
     }
     
     static func saveScore(s: Int){
         score = s
-        print("Saved score: \(score)")
         
         if score > highscore{
+            //print("in LevelManager changed hs: ", highscore, " score: ", score)
             highscore = score
         }
     }
     
     static func restoreScore() -> Int{
-        print("Restored score: \(score)")
         return score
     }
     
     static func setHighscore(s: Int){
         highscore = s
+        //print("set hs: ", highscore)
     }
     
     static func getHighscore() -> Int{
+        //print("get hs: ", highscore)
         return highscore
     }
 

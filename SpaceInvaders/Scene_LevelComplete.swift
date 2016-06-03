@@ -10,6 +10,7 @@ import Foundation
 import SpriteKit
 
 class Scene_LevelComplete:SKScene{
+    var input: [SKNode]?
     
     override func didMoveToView(view: SKView) {
         self.backgroundColor = SKColor.blackColor()
@@ -26,6 +27,10 @@ class Scene_LevelComplete:SKScene{
         startGameButton.name = "nextlevel"
 
         addChild(startGameButton)
+        //addChild(input![0])
+        //addChild(input![1])
+        //addChild(input![2])
+        //addChild(input![3])
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {

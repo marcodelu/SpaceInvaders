@@ -9,7 +9,7 @@
 import SpriteKit
 import CoreMotion
 
-struct CollisionCategories{
+struct CollisionCategories {
     static let Invader : UInt32 = 0x1 << 0
     static let Player: UInt32 = 0x1 << 1
     static let InvaderBullet: UInt32 = 0x1 << 2
@@ -18,7 +18,7 @@ struct CollisionCategories{
 }
 
 class Scene_Game: SKScene, SKPhysicsContactDelegate {
-    let leftBounds = CGFloat(10)
+    let leftBounds = CGFloat(5)
     var rightBounds = CGFloat(0)
     var shift: CGFloat?
     
@@ -30,13 +30,15 @@ class Scene_Game: SKScene, SKPhysicsContactDelegate {
     
     let scoreLabelPoint = SKLabelNode(fontNamed: "Space Invaders")
     let scoreLabelText = SKLabelNode(fontNamed: "Space Invaders")
-    
     let highscoreLabelPoint = SKLabelNode(fontNamed: "Space Invaders")
     let highscoreLabelText = SKLabelNode(fontNamed: "Space Invaders")
+    let levelLabelText = SKLabelNode(fontNamed: "Space Invaders")
+    let levelLabelValue = SKLabelNode(fontNamed: "Space Invaders")
 
     var scoreCount = 0
     var score: Int = 0 {
         didSet {
+            print("score ", score)
             // Sposto il label se necessario
             scoreLabelPoint.position = CGPointMake(scoreLabelText.position.x+20, scoreLabelText.position.y)
             scoreLabelPoint.text = String(score)
@@ -51,11 +53,13 @@ class Scene_Game: SKScene, SKPhysicsContactDelegate {
             //Controllo se ha superato l'high score
             if score > highscore {
                 highscore = score
+                print("in didSet score changed hs: ", highscore, " score: ", score)
             }
         }
     }
     var highscore: Int = 0 {
         didSet {
+            print("hs: ", highscore)
             //Sposta e aggiorna grafica
             highscoreLabelPoint.position = CGPointMake(highscoreLabelText.position.x+40, highscoreLabelText.position.y)
             highscoreLabelPoint.text = String(highscore)
@@ -67,10 +71,8 @@ class Scene_Game: SKScene, SKPhysicsContactDelegate {
                 charactersCount -= 1
             }
 
-            
             //Salva il nuovo high score
             NSUserDefaults.standardUserDefaults().setObject(highscore, forKey: "highscore")
-            print("Saved highscore:", highscore)
         }
     }
     
@@ -83,8 +85,8 @@ class Scene_Game: SKScene, SKPhysicsContactDelegate {
         
         self.backgroundColor = SKColor.blackColor()
         
-        rightBounds = self.size.width - 10
-        shift = CGFloat(20)
+        rightBounds = self.size.width - 5
+        shift = CGFloat(10)
         
         setupInvaders()
         setupPlayer()
@@ -175,7 +177,7 @@ class Scene_Game: SKScene, SKPhysicsContactDelegate {
                 invaderColumn = j
                 let tempInvader:Invader = Invader()
                 let invaderHalfWidth:CGFloat = tempInvader.size.width/2
-                let xPositionStart:CGFloat = size.width/2 - invaderHalfWidth - (CGFloat(LevelManager.level) * tempInvader.size.width) + CGFloat(10)
+                let xPositionStart:CGFloat = size.width/2 - invaderHalfWidth - (CGFloat(tempInvader.size.width) + CGFloat(10))
                 tempInvader.position = CGPoint(x:xPositionStart + ((tempInvader.size.width+CGFloat(10))*(CGFloat(j-1))), y:CGFloat(self.size.height - CGFloat(i) * 46))
                 tempInvader.invaderRow = invaderRow
                 tempInvader.invaderColumn = invaderColumn
@@ -197,6 +199,7 @@ class Scene_Game: SKScene, SKPhysicsContactDelegate {
             let invader = node as! SKSpriteNode
             let invaderHalfWidth = invader.size.width/2
             invader.position.x -= CGFloat(LevelManager.speed)
+            //print ("Bug: position.x ", invader.position.x, " rb ihw ", self.rightBounds, invaderHalfWidth)
             if(invader.position.x > self.rightBounds - invaderHalfWidth || invader.position.x < self.leftBounds + invaderHalfWidth){
                 changeDirection = true
             }
@@ -211,7 +214,6 @@ class Scene_Game: SKScene, SKPhysicsContactDelegate {
             }
             changeDirection = false
         }
-        
     }
     
     func invokeInvaderFire(){
@@ -239,6 +241,8 @@ class Scene_Game: SKScene, SKPhysicsContactDelegate {
         
         let levelCompleteScene = Scene_LevelComplete(size: size)
         levelCompleteScene.scaleMode = scaleMode
+        
+        levelCompleteScene.input = [scoreLabelPoint,scoreLabelText, highscoreLabelPoint, highscoreLabelText, levelLabelValue, levelLabelText]
         let transitionType = SKTransition.moveInWithDirection(SKTransitionDirection.Down, duration: 0.5)
             view?.presentScene(levelCompleteScene,transition: transitionType)
     }
@@ -259,24 +263,19 @@ class Scene_Game: SKScene, SKPhysicsContactDelegate {
     }
     
     override func didSimulatePhysics() {
-        player.physicsBody?.velocity = CGVector(dx: accelerationX * 700, dy: 0)
+        player.physicsBody?.velocity = CGVector(dx: accelerationX * 800, dy: 0)
     }
     
     func setupScore(){
-        score = LevelManager.restoreScore()
-        highscore = LevelManager.getHighscore()
-        
         scoreLabelText.text = "SCORE: "
         scoreLabelPoint.text = String(score)
         scoreLabelText.position = CGPointMake(20, self.size.height-15)
-        scoreLabelPoint.position = CGPointMake(scoreLabelText.position.x+30, scoreLabelText.position.y)
+        //scoreLabelPoint.position = CGPointMake(scoreLabelText.position.x+30, scoreLabelText.position.y)
         scoreLabelText.color = SKColor.whiteColor()
         scoreLabelPoint.color = SKColor.whiteColor()
         scoreLabelText.fontSize = 10
         scoreLabelPoint.fontSize = 10
         
-        let levelLabelText = SKLabelNode(fontNamed: "Space Invaders")
-        let levelLabelValue = SKLabelNode(fontNamed: "Space Invaders")
         levelLabelText.text = "LEVEL: "
         levelLabelValue.text = String(LevelManager.level)
         levelLabelText.position = CGPointMake(self.size.width-50, self.size.height-15)
@@ -292,7 +291,11 @@ class Scene_Game: SKScene, SKPhysicsContactDelegate {
         highscoreLabelPoint.color = SKColor.whiteColor()
         highscoreLabelPoint.fontSize = scoreLabelPoint.fontSize
         highscoreLabelText.position = CGPointMake(size.width/2, scoreLabelText.position.y)
-        highscoreLabelPoint.position = CGPointMake(highscoreLabelText.position.x+40, highscoreLabelText.position.y)
+        //highscoreLabelPoint.position = CGPointMake(highscoreLabelText.position.x+60, highscoreLabelText.position.y)
+        
+        score = LevelManager.restoreScore()
+        highscore = LevelManager.getHighscore()
+        print("in setupscore hs: ", highscore, " score: ", score)
 
         addChild(scoreLabelText)
         addChild(scoreLabelPoint)

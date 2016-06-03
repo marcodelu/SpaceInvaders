@@ -10,9 +10,10 @@ import UIKit
 import SpriteKit
 
 class Bullet: SKSpriteNode {
+    let fileName = "bullet"
     
     init(imageName: String, bulletSound: String?) {
-        let texture = SKTexture(imageNamed: "Bullet")
+        let texture = SKTexture(imageNamed: imageName)
         super.init(texture: texture, color: SKColor.clearColor(), size: texture.size())
         if bulletSound != nil {
             runAction(SKAction.playSoundFileNamed(bulletSound!, waitForCompletion: false))
@@ -28,6 +29,7 @@ class Bullet: SKSpriteNode {
 class InvaderBullet: Bullet {
     override init(imageName: String, bulletSound:String?){
         super.init(imageName: imageName, bulletSound: bulletSound)
+        
         self.physicsBody = SKPhysicsBody(texture: self.texture!, size: self.size)
         self.physicsBody?.dynamic = true
         self.physicsBody?.usesPreciseCollisionDetection = true
@@ -46,7 +48,6 @@ class InvaderBullet: Bullet {
 class PlayerBullet: Bullet {
     override init(imageName: String, bulletSound:String?){
         super.init(imageName: imageName, bulletSound: bulletSound)
-        
         self.physicsBody = SKPhysicsBody(texture: self.texture!, size: self.size)
         self.physicsBody?.dynamic = true
         self.physicsBody?.usesPreciseCollisionDetection = true
